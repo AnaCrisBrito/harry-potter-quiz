@@ -19,7 +19,7 @@ O projeto tem como objetivo praticar conceitos de lógica de programação e apr
 
 ## Documentação
 
-Consulte o [Planejamento do Projeto](PLANEJAMENTO.md) para conhecer as regras, a estrutura e as funcionalidades planejadas.
+Consulte o [Planejamento do Projeto](Planejamento.md) para conhecer as regras, a estrutura e as funcionalidades planejadas.
 
 ## Status
 
