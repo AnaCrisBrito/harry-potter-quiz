@@ -1,3 +1,5 @@
+import os
+import time
 
 perguntas = [
     {
@@ -242,3 +244,62 @@ perguntas = [
         }
 ]
 
+
+#"Tela" de inicio 
+print("=" * 50)
+print(" HARRY POTTER QUIZ".center(50))
+print("=" * 50)
+
+print("\nVocê conhece o mundo bruxo?")
+print("\nPrepare-se para testar seus conhecimentos \nsobre Hogwarts!\n")
+
+print("-" * 50)
+
+nome = input("Digite seu nome: ")
+
+print("=" * 50)
+
+
+time.sleep(.5)
+os.system('cls' if os.name == 'nt' else 'clear')
+
+print("=" * 50)
+print("INSTRUÇÕES".center(50))
+print("=" * 50)
+
+print("\n1. O quiz possui 20 perguntas. \n2. Cada pergunta possui quatro alternativas. \n3. Existem quatro níveis de dificuldade. \n4. Cada nível possui uma pontuação diferente. \n5. Você receberá o resultado após cada resposta.\n")
+
+print("-" * 50)
+
+print("\nPontuação por dificuldade:")
+print("Fácil           : 1 ponto \nMédio           : 2 pontos \nIntermediário   : 4 pontos \nDifícil         : 8 pontos\n")
+
+print("-" * 50)
+
+iniciar = input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
+if iniciar == "INICIAR":
+    time.sleep(0.5)
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+else:
+    input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
+    
+time.sleep(0.5)
+os.system('cls' if os.name == 'nt' else 'clear')
+
+for  index, pergunta, in enumerate(perguntas):
+    print("=" * 50)
+    print(f"Pergunta {index + 1} de {len(perguntas)}".center(50))
+    print("=" * 50)
+    
+    print(f"\nNível: {pergunta['nivel']}")
+    print(f"Vale: {pergunta["pontuacao"]} ponto.\n")
+    
+    print(f"{pergunta["pergunta"]}\n")
+    
+    for opcoes in pergunta["opcoes"]:
+        print(opcoes)
+        
+    resposta = input("\nSua resposta: ").upper().strip()
+    
+    break
