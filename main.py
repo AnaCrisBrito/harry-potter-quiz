@@ -276,13 +276,15 @@ print("Fácil           : 1 ponto \nMédio           : 2 pontos \nIntermediário
 
 print("-" * 50)
 
-iniciar = input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
-if iniciar == "INICIAR":
-    time.sleep(0.5)
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
-else:
-    input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
+
+while True:
+    iniciar = input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
+    if iniciar in ["INICIAR"]:
+        time.sleep(0.5)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        break
+    else:
+        input("Quando estiver preparado digite INICIAR\n: ").upper().strip()
     
 time.sleep(0.5)
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -299,7 +301,12 @@ for  index, pergunta, in enumerate(perguntas):
     
     for opcoes in pergunta["opcoes"]:
         print(opcoes)
-        
-    resposta = input("\nSua resposta: ").upper().strip()
-    
+      
+    while True:
+        resposta = input("\nDigite a letra de sua resposta: ").upper().strip()
+
+        if resposta in ["A", "B", "C", "D"]:
+            break  # Sai do loop apenas se a resposta for válida
+        else:
+            print("Resposta inválida! Digite A, B, C ou D.")
     break
