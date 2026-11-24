@@ -289,6 +289,10 @@ while True:
 time.sleep(0.5)
 os.system('cls' if os.name == 'nt' else 'clear')
 
+pontuacao = 0
+respostasCertas = 0
+respostasErradas = 0
+
 for  index, pergunta, in enumerate(perguntas):
     print("=" * 50)
     print(f"Pergunta {index + 1} de {len(perguntas)}".center(50))
@@ -309,4 +313,18 @@ for  index, pergunta, in enumerate(perguntas):
             break  # Sai do loop apenas se a resposta for válida
         else:
             print("Resposta inválida! Digite A, B, C ou D.")
-    break
+    
+    if resposta == pergunta["resposta"]:
+        print("-" * 50)
+        
+        print(f"\n✅ Correto! Você ganhou {pergunta["pontuacao"]} ponto!") 
+        pontuacao += pergunta["pontuacao"]  
+        respostasCertas += 1   
+    else:
+        print("-" * 50)
+        
+        print(f"❌ Incorreto! A Resposta correta era a letra: {pergunta["resposta"]}")  
+        respostasErradas += 1
+        
+              
+   
