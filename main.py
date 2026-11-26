@@ -1,5 +1,6 @@
 import os
 import time
+import re
 
 perguntas = [
     {
@@ -255,7 +256,18 @@ print("\nPrepare-se para testar seus conhecimentos \nsobre Hogwarts!\n")
 
 print("-" * 50)
 
-nome = input("Digite seu nome: ")
+while True:
+  nome = input("Digite seu nome: ").strip()
+
+  if not nome:
+    print("O nome não pode ficar vazio.")
+    continue
+
+  if not re.fullmatch(r"[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)*", nome):
+    print("Digite um nome válido (apenas letras e espaços).")
+    continue
+
+  break
 
 print("=" * 50)
 
@@ -292,6 +304,10 @@ os.system('cls' if os.name == 'nt' else 'clear')
 pontuacao = 0
 respostasCertas = 0
 respostasErradas = 0
+facilCertas = 0
+medioCertas = 0
+intermediarioCertas = 0
+dificilCertas = 0
 
 for  index, pergunta, in enumerate(perguntas):
     print("=" * 50)
@@ -302,6 +318,7 @@ for  index, pergunta, in enumerate(perguntas):
     print(f"Vale: {pergunta["pontuacao"]} ponto.\n")
     
     print(f"{pergunta["pergunta"]}\n")
+    
     
     for opcoes in pergunta["opcoes"]:
         print(opcoes)
@@ -314,17 +331,47 @@ for  index, pergunta, in enumerate(perguntas):
         else:
             print("Resposta inválida! Digite A, B, C ou D.")
     
+    time.sleep(0.5)
+    os.system('cls' if os.name == 'nt' else 'clear') 
+
     if resposta == pergunta["resposta"]:
-        print("-" * 50)
+        print("=" * 50)
+        print(f"✅  RESPOSTA CORRETA!".center(50)) 
+        print("=" * 50)
         
-        print(f"\n✅ Correto! Você ganhou {pergunta["pontuacao"]} ponto!") 
+        print("\nParabéns! Você acertou!")
+        
+        print(f"\n+{pergunta["pontuacao"]} ponto")
+        
         pontuacao += pergunta["pontuacao"]  
         respostasCertas += 1   
+        
+        print(f"\nPontuação atual: {pontuacao}")
+        time.sleep(3)
+        os.system('cls' if os.name == 'nt' else 'clear') 
     else:
         print("-" * 50)
-        
-        print(f"❌ Incorreto! A Resposta correta era a letra: {pergunta["resposta"]}")  
+        print(f"❌ RESPOSTA INCORRETA!".center(50))  
         respostasErradas += 1
+        print("=" * 50)
         
-              
+        print("\nQue pena! Essa não era a resposta correta.")
+        print(f"\nResposta correta: {pergunta["resposta"]}")
+        print(f"\nPontuação atual: {pontuacao}")
+        
+        time.sleep(3)
+        os.system('cls' if os.name == 'nt' else 'clear')
+    break
+      
+print("=" * 50)
+print("MURAL DE HOGWARTS".center(50))
+print("=" * 50)
+
+print(f"JOGADOR: {nome}")
+print("-" * 50)
+
+print("Resultado Final".center(50))
+
+
+
    
