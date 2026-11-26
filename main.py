@@ -302,12 +302,23 @@ time.sleep(0.5)
 os.system('cls' if os.name == 'nt' else 'clear')
 
 pontuacao = 0
-respostasCertas = 0
-respostasErradas = 0
-facilCertas = 0
-medioCertas = 0
-intermediarioCertas = 0
-dificilCertas = 0
+respostasCertas = respostasErradas  = 0
+
+facilCertas = facilErradas  = 0
+
+medioCertas = medioErradas = 0
+
+intermediarioCertas = intermediarioErradas = 0
+
+dificilCertas = dificilErradas = 0
+
+pontuacaoFacilCertas =  0
+
+pontuacaoMedioCertas = 0
+
+pontuacaoIntermediarioCertas = 0
+
+pontuacaoDificilCertas = 0
 
 for  index, pergunta, in enumerate(perguntas):
     print("=" * 50)
@@ -344,7 +355,20 @@ for  index, pergunta, in enumerate(perguntas):
         print(f"\n+{pergunta["pontuacao"]} ponto")
         
         pontuacao += pergunta["pontuacao"]  
-        respostasCertas += 1   
+        respostasCertas += 1  
+        
+        if pergunta["nivel"] == "Fácil":
+            pontuacaoFacilCertas += pergunta["pontuacao"]
+            facilCertas += 1
+        elif pergunta["nivel"] == "Médio":
+            pontuacaoMedioCertas += pergunta["pontuacao"]
+            medioCertas += 1
+        elif pergunta["nivel"] == "Intermediário":
+            pontuacaoIntermediarioCertas += pergunta["pontuacao"]
+            intermediarioCertas += 1
+        else:
+            pontuacaoDificilCertas += pergunta["pontuacao"]
+            dificilCertas += 1
         
         print(f"\nPontuação atual: {pontuacao}")
         time.sleep(3)
@@ -352,16 +376,27 @@ for  index, pergunta, in enumerate(perguntas):
     else:
         print("-" * 50)
         print(f"❌ RESPOSTA INCORRETA!".center(50))  
-        respostasErradas += 1
+        
         print("=" * 50)
         
         print("\nQue pena! Essa não era a resposta correta.")
         print(f"\nResposta correta: {pergunta["resposta"]}")
         print(f"\nPontuação atual: {pontuacao}")
         
+        respostasErradas += 1
+        if pergunta["nivel"] == "Fácil":
+            facilErradas += 1
+        elif pergunta["nivel"] == "Médio":
+            medioErradas += 1
+        elif pergunta["nivel"] == "Intermediário":
+            intermediarioErradas += 1
+        else:
+            dificilErradas += 1
+       
+        
         time.sleep(3)
         os.system('cls' if os.name == 'nt' else 'clear')
-    break
+    
       
 print("=" * 50)
 print("MURAL DE HOGWARTS".center(50))
@@ -372,6 +407,30 @@ print("-" * 50)
 
 print("Resultado Final".center(50))
 
+print(f"Acertos: {respostasCertas} / 20")
+print(f"Erros: {respostasErradas} / 20")
+print(f"Pontuação Final: {pontuacao} / 75 pontos")
 
+print("-" * 50)
 
-   
+print("DESEMPENHO POR DIFICULDADE".center(50))
+
+print("-" * 50)
+
+print("Fácil:")
+print(f"Acertos: {facilCertas} / 5                Pontos: {pontuacaoFacilCertas} / 5 pontos")
+print(f"Erros: {facilErradas} / 5\n")
+
+print("Médio:")
+print(f"Acertos: {medioCertas} / 5                Pontos: {pontuacaoMedioCertas} / 10 pontos")
+print(f"Erros: {medioErradas} / 5\n")
+
+print("Intermediário:")
+print(f"Acertos: {intermediarioCertas} / 5                Pontos: {pontuacaoIntermediarioCertas} / 20 pontos")
+print(f"Erros: {intermediarioErradas} / 5\n")
+
+print("Dificíl")
+print(f"Acertos: {dificilCertas} / 5                Pontos: {pontuacaoDificilCertas} / 40 pontos")
+print(f"Erros: {dificilErradas} / 5")
+
+print("=" * 50)
